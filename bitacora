@@ -1,0 +1,17 @@
+--> Creation of virtual envirorment for Python in Windows:
+python3 -m venv <name>
+--> to launch the vitual envirorment:
+go to the command promp > .integration_project-env > Scripts > activate.bat
+--> launch the code, from cmd:
+go to the code (client.py) > python client.py (it won't work coz' i haven't lauched the server)
+
+--> pip freeze > requirerments.txt
+send it to the the raspberry by WinSCP or make a file transfer (scp)
+
+--> Creation of virtual envirorment for Python in Pi:
+sudo apt-get install python3-venv
+python3 -m venv .integration_project-env (creation of envirorment)
+source server-env/bin/activate (activate envirorment)
+pip install -r requirerments.txt
+python server.py (lounch the server)
+
