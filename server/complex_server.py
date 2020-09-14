@@ -1,13 +1,13 @@
 import socket
 import select
-import pylogging
+# import pylogging
 import os
 
 
-# Logs Dir Absolute Path
-logs_path = os.path.dirname(os.path.abspath(__file__)) + '/logs/'
-# Create Logger Instance
-logger = pylogging.PyLogging(LOG_FILE_PATH = logs_path)
+# # Logs Dir Absolute Path
+# logs_path = os.path.dirname(os.path.abspath(__file__)) + '/logs/'
+# # Create Logger Instance
+# logger = pylogging.PyLogging(LOG_FILE_PATH = logs_path)
 
 hoste = ''
 port = 12800
@@ -40,13 +40,14 @@ while server_launch:
             msg_received = client.recv(1024)
             msg_received = msg_received.decode()
             
-            cliets_answer = open('courses', "a")
-            cliets_answer.write("> {}\n".format(msg_received))
+            # cliets_answer = open('courses', "a")
+            # cliets_answer.write("> {}\n".format(msg_received))
             
             print("Received: {}".format(msg_received))
-            client.send(b"5/5")
-            if msg_received == "fin":
-                server_launch = False
+            
+            # client.send(b"5/5")
+            # if msg_received == "fin":
+            #     server_launch = False
 
 print("Closing the connections")
 for client in connected_clients:

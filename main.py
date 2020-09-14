@@ -3,6 +3,7 @@ import mvc.model as model
 import mvc.view.main_view as view
 import time
 from threading import Thread
+import client
 
 if __name__ == "__main__":
 
@@ -25,9 +26,9 @@ if __name__ == "__main__":
     # Model
     MODEL = model.Shopping_list()
 
-    # Classe de log
-    SLog = LogSL(MODEL)
-    SLog.start()
+    # # Classe de log
+    # SLog = LogSL(MODEL)
+    # SLog.start()
     
     # Controller
     CONTROLLER = controller.Controller(MODEL)
@@ -38,8 +39,11 @@ if __name__ == "__main__":
     
     # # Link Vue => Controller => Model
 
+    # Client
+    CLIENT = client.Client(MODEL)
+    CLIENT.start()
     
-    VIEW.run()
+    VIEW.do()
 
-
-    SLog.join()
+    # SLog.join()
+    

@@ -1,4 +1,5 @@
 from interface.ISubject import ISubject
+import base64
 
 class Product():
     
@@ -51,6 +52,9 @@ class Shopping_list(ISubject):
         
     def __repr__(self):
         return "product list: {}".format(self._dic)
+    
+    def encode(self):
+        return str(self._dic).encode('utf-8')
 
    
    

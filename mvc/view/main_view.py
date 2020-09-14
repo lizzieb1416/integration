@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
+from threading import Thread
 
 from mvc.view.result_frame import ResultFrame
 from mvc.view.create_list_frame import CreateListFrame
@@ -12,7 +13,6 @@ class MainView(Tk):
     
     def __init__(self, controller, model):
         Tk.__init__(self)
-        
         
         
         self.title("Babylove's Shopping List")
@@ -42,7 +42,7 @@ class MainView(Tk):
         
 
         
-    def run(self):
+    def do(self):
         self.mainloop()
                 
 
