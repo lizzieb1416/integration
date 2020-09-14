@@ -1,6 +1,6 @@
 import mvc.controller as controller
 import mvc.model as model
-import mvc.view as view
+import mvc.view.main_view as view
 import time
 from threading import Thread
 
@@ -14,7 +14,7 @@ if __name__ == "__main__":
             
         def run(self):
             while True:
-                print(SHOPPING_LIST)
+                print(MODEL)
                 time.sleep(2)
             
 
@@ -23,27 +23,21 @@ if __name__ == "__main__":
 
     
     # Model
-    SHOPPING_LIST = model.Shopping_list()
+    MODEL = model.Shopping_list()
 
     # Classe de log
-    SLog = LogSL(SHOPPING_LIST)
+    SLog = LogSL(MODEL)
     SLog.start()
     
     # Controller
-    CONTROLLER = controller.Controller(SHOPPING_LIST)
+    CONTROLLER = controller.Controller(MODEL)
     
  
     # Vue
-    VIEW = view.View(CONTROLLER)
+    VIEW = view.MainView(CONTROLLER, MODEL)
     
     # # Link Vue => Controller => Model
-    # CONTROLLER._sl = SHOPPING_LIST
-    # CONTROLLER.add_product("apple", "fruit", 1, "kg")
-    # CONTROLLER.add_product("grapes", "fruit", 2, "kg")
-      
-    
-    # SHOPPING_LIST.name = "frutas"
-    # print(SHOPPING_LIST)
+
     
     VIEW.run()
 
