@@ -3,6 +3,8 @@ import socket
 # import os
 from mvc.model import Shopping_list 
 from threading import Thread
+import pickle
+import time
 
 
 class Client(Thread):
@@ -10,7 +12,7 @@ class Client(Thread):
     def __init__(self, model):
         Thread.__init__(self, name="client_thread")
         
-        self.hoste = "192.168.1.103"
+        self.hoste = "192.168.1.47"
         self.port = 12800
         
         self.connection_with_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -24,12 +26,10 @@ class Client(Thread):
     
     def send_data(self):
        
-        msg_to_send = self.model.encode()
+        msg_to_send = pickle.dumps(self.model) 
         print("CLIENT msg encode : {}".format(msg_to_send))
         self.connection_with_server.send(msg_to_send)
         
-        # msg_received = self.connection_with_server.recv(1024)
-        # print(msg_received.decode())
 
     def disconnection(self):
         print("Closing the connection")
@@ -39,4 +39,6 @@ class Client(Thread):
     def run(self):
         self.connection()
         while True:
+            time.sleep(1)
             self.send_data()
+        # self.send_data()

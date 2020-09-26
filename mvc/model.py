@@ -1,5 +1,4 @@
 from interface.ISubject import ISubject
-import base64
 
 class Product():
     
@@ -10,7 +9,7 @@ class Product():
         self.unity = None
         
     def __repr__(self):
-        return "{} type, {} {}".format(self.item_type, self.quantity, self.unity)
+        return "{} {} {}".format(self.quantity, self.item_type,  self.unity)
         
 class Shopping_list(ISubject):
     
@@ -49,53 +48,21 @@ class Shopping_list(ISubject):
         
     def values(self):
         return self._dic.values()
+    
+    def items(self):
+        return self._dic.items()
         
     def __repr__(self):
-        return "product list: {}".format(self._dic)
+        return "{}".format(self._dic)
     
-    def encode(self):
-        return str(self._dic).encode('utf-8')
+    def __getstate__(self):
+        '''To pickle'''
+        return (self.name, self._dic)
+    
+    def __setstate__(self, attribut_tuple):
+        '''To unpickle'''
+        self.name = attribut_tuple[0]
+        self._dic = attribut_tuple[1]
+
 
    
-   
-   
-   
-   
-   
-    
-# class controller(shopping_list):
-    
-#     def __init__(self, name, place, item_type):
-#         shopping_list.__init__(self, name, place, item_type)
-    
-#     def __repr__(self):
-#         return "\nShopping list name: {} \nEstablishment: {} \nItem's type: {} \n\nITEMS LIST: ".format(self.name, self.place, self.item_type, self._items_to_buy_dic)
-    
-#     def __getitem__ (self, item):
-#         return self._items_to_buy_dic[item]
-    
-#     def __setitem__ (self, item, quantity):
-#         '''In case i need to change the quantity of any item'''
-#         self._items_to_buy_dic[item] = quantity 
-    
-#     def __delitem__ (self, item):
-#         self._items_to_buy_dic[item]
-        
-#     def __len__ (self):
-#         '''Give this number at the end of the list'''
-#         return self._items_to_buy_dic.__len__()
-    
-    
-# fruits_list = controller("Fruits shopping", "Casino", "fruits")
-
-# # print(fruits_list)
-
-# fruits_list["framboises"] = 2
-
-# # print(len(fruits_list))
-
-
-# # TODO 1.  
-
-
-
