@@ -1,6 +1,0 @@
-{
-    "python.pythonPath": ".integration_project-env\\Scripts\\python.exe",
-    "files.exclude": {
-        "**/__pycache__": true
-    }
-}

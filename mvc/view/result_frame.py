@@ -12,9 +12,14 @@ class ResultFrame(Frame, IObserver):
         
         self.label_list = []
         
+    def clean_label_list(self):
+        for label in self.label_list:
+            label.destroy()
         
+        self.label_list.clear()
+    
     def update(self, shopping_list):
-        # self.label_list.clear()  
+        self.clean_label_list() 
         i = 0
         for key in shopping_list.keys(): 
             elt = shopping_list[key]
