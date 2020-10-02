@@ -17,8 +17,6 @@ class WebServer(BaseHTTPRequestHandler):
         self.wfile.write(bytes(file_to_open, 'utf-8'))
 
 
-
-
 # httpd = HTTPServer(('localhost', 8080), WebServer)  #192.168.56.1
 # httpd.serve_forever()
 

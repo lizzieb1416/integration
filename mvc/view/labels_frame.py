@@ -9,7 +9,9 @@ class LabelsFrame(Frame):
         self.lb_item = Label(master=self, text="Item: ") 
         self.lb_quantity = Label(master=self, text="Quantity: ")
         self.lb_type = Label(master=self, text="Product type: ")
+        self.lb_item_to_remove = Label(master=self, text="Item to remove: ")
 
         self.lb_item.pack(fill=X)
         self.lb_quantity.pack(fill=X)
         self.lb_type.pack(fill=X)
+        self.lb_item_to_remove.pack(fill=X)

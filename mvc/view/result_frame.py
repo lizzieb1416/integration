@@ -1,5 +1,6 @@
 from tkinter import *
-from interface.IObserver import IObserver
+from interfaces import IObserver
+from tkinter import messagebox
 
 class ResultFrame(Frame, IObserver):
     
@@ -29,7 +30,9 @@ class ResultFrame(Frame, IObserver):
             elt_label.pack(fill=X)
             
             i +=1
-            
+    
+    def update_error(self, error):
+        messagebox.showerror("Warning", error.args[0])
 
 # TODO: pasar los botones y los labels de main_view a aqui
         

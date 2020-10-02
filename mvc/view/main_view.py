@@ -8,12 +8,15 @@ from mvc.view.create_list_frame import CreateListFrame
 from mvc.view.labels_frame import LabelsFrame
 from mvc.view.entries_frame import EntriesFrame
 
+from interfaces import IController
+
 class MainView(Tk):
     
     
-    def __init__(self, controller, model):
+    def __init__(self, controller: IController):
         Tk.__init__(self)
         
+        self.controller = controller
         
         self.title("Babylove's Shopping List")
     
@@ -27,11 +30,13 @@ class MainView(Tk):
         self.labels_frame = LabelsFrame(master=self, relief=RAISED, width=200, height=300, bg="antique white")
         
         # EntriesFrame
-        self.entries_frame = EntriesFrame(master=self, controller=controller, relief=RAISED, width=200, height=300, bg="antique white")
+        self.entries_frame = EntriesFrame(master=self, controller=self.controller, relief=RAISED, width=200, height=300, bg="antique white")
        
         # ResultFrame
         self.shopping_list_frame = ResultFrame(master=self, relief=RAISED, width=400, height=300, bg="bisque", is_pack=False)
-        model.attach(self.shopping_list_frame)
+        
+        # the internal frame will subscribe to the model through the controller method and this internal frame update(model) method will be called by the subject
+        self.controller.subscribe_to_model(self.shopping_list_frame)
         
         
 
@@ -42,7 +47,7 @@ class MainView(Tk):
         
 
         
-    def do(self):
+    def run(self):
         self.mainloop()
                 
 

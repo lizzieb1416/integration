@@ -4,15 +4,17 @@ import os, os.path
 import sys
 from threading import Thread
 import time
+from interfaces import IObserver
 
-class HTMLCreator(Thread):
+class HTMLCreator(IObserver,Thread):
     
-    def __init__(self, server):
+    def __init__(self, model):
         Thread.__init__(self, name="html_thread")
         
-        self.server = server
         self.doc = dominate.document(title='Shopping list')
         self.table_headers = ['Product', 'Quantity']
+        
+        model.attach(self)
         
         with self.doc.head:
             link(rel='stylesheet', href='style.css')
@@ -28,25 +30,32 @@ class HTMLCreator(Thread):
                                 th(table_head)
                         self.body = tbody()
                         
-    def create_html_doc(self):
+    def create_html_doc(self, model):
         self.body.clear()
         with self.body:
-            for key, value in self.server.model.items():
+            for key, value in model.items():
                 with tr():
                     td(key)
                     td(value.quantity)
             
 
-    def save_html_file(self):
+    def save_html_file(self, model):
         html_file = open(os.path.join(sys.path[0], "index.html"), "w")
-        self.create_html_doc()    
+        self.create_html_doc(model)    
         html_file.write(self.doc.render())
         html_file.close()
         
-    def run(self):
-        while True:
-            self.save_html_file()
-            time.sleep(2)
+    # def run(self):
+    #     while True:
+    #         self.save_html_file()
+    #         time.sleep(2)
+            
+        
+    def update(self, subject):
+        self.save_html_file(subject)
+    
+    def update_error(self, error):
+        pass
 
 
 # MODEL = {'apples':4, 'grapes':15, 'tomatoes':103}

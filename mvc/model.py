@@ -1,4 +1,4 @@
-from interface.ISubject import ISubject
+from interfaces import ISubject
 
 class Product():
     
@@ -28,6 +28,9 @@ class Shopping_list(ISubject):
     def notify(self):
         for observer in self.observer_list:
             observer.update(self)
+            
+    def notify_error(self):
+        pass
 
     def __setitem__(self, key, value):
         self._dic[key] = value
@@ -37,7 +40,7 @@ class Shopping_list(ISubject):
         return self._dic[key]
     
     def __delitem__(self, key):
-        self._dic[key]
+        del self._dic[key]
         self.notify()
         
     def __len__(self):

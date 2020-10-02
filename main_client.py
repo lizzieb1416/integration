@@ -2,47 +2,59 @@ import mvc.controller as controller
 import mvc.model as model
 import mvc.view.main_view as view
 import time
-from threading import Thread
-import client
+# from threading import Thread
+from client import Client
 # from web_server.html_creator import HTMLCreator
 # # from web_server.web_server import WebServer
 
 if __name__ == "__main__":
-
-    class LogSL(Thread):
-        
-        def __init__(self, sl):
-            Thread.__init__(self)
-            self.sl = sl
-            
-        def run(self):
-            while True:
-                print(MODEL)
-                time.sleep(2)
-            
-
-    print("DEBUT")
     
+    ## Client in local 
+    # MODEL = model.Shopping_list()
+    # CONTROLLER = controller.Controller(MODEL)
 
-    # Model
-    MODEL = model.Shopping_list()
+    #Client in remote
+    CONTROLLER = Client()
+    CONTROLLER.start()
     
-    # Controller
-    CONTROLLER = controller.Controller(MODEL)
-
-    # Vue
-    VIEW = view.MainView(CONTROLLER, MODEL)
-    
-    # # Link Vue => Controller => Model
-
-    # Client
-    CLIENT = client.Client(MODEL)
-    CLIENT.start()
-    
-    # HTMLFILE = HTMLCreator(MODEL)
-    # HTMLFILE.start()
-
-    VIEW.do()
+    VIEW = view.MainView(CONTROLLER)
+    VIEW.run()
     
 
     
+    
+    
+    
+    
+    
+    
+    
+    ## Model
+    # MODEL = model.Shopping_list()
+    
+    # # Controller
+    # CONTROLLER = controller.Controller(MODEL)
+
+    # # Vue
+    # VIEW = view.MainView(CONTROLLER, MODEL)
+    
+    # # # Link Vue => Controller => Model
+
+    # # Client
+    # CLIENT = client.Client(MODEL)
+    # CLIENT.start()
+
+    # VIEW.do()
+    
+
+    
+    
+    
+    # CONTROLLER.add_product("banane", "fruit", 5, "-")
+    # CONTROLLER.add_product("apple", "fruit", 10, "-")
+    # CONTROLLER.add_product("onion", "vegetable", 4, "-")
+    # print(MODEL)
+    
+    # CONTROLLER.del_product("apple")
+    # CONTROLLER.del_product("onion")
+    # print(MODEL)
