@@ -18,8 +18,10 @@ python server.py (lounch the server)
 03/10/2020
 --> make excecutables of my application in python with cx_Freeze: https://cx-freeze.readthedocs.io/en/latest/distutils.html
 First make the file setup.py and then
-* In Windows to create the .exe and the installer, tape this in the cmd: 
-  python setup.py bdist_msi
-
+* In Windows to create the build (.exe) and the installer, tape this in the cmd: 
+  python setup.py build        -> If i just want to buil
+  python setup.py bdist_msi    -> Creates the build and the installer
+* In Linux, command line:
+  python3 setup.py build -> It is a bit more complicated to make the installer, so i will leave it for another ocasion.
 
 

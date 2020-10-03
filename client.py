@@ -13,7 +13,7 @@ class Client(ISubject, IController, Thread):
     def __init__(self):
         Thread.__init__(self, name="client_thread")
         
-        self.host = "192.168.1.47"
+        self.host = "192.168.1.22"
         self.port = 12800
         
         self.connection_with_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
